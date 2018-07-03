@@ -14,5 +14,3 @@ yarn-error.log*
 *.sln
 
 # Firebase Config files
-/src/env
-firebaseConfig.env

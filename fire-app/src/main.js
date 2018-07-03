@@ -6,19 +6,26 @@ import router from './router'
 import VueFire from 'vuefire'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
-import firebaseConfig from './env/firebaseConfig'
+import firebaseConfig from './firebaseConfig.env'
 
 Vue.use(VueFire)
-const settings = firebase.initializeApp({
-  apiKey: firebaseConfig.apiKey,
-  authDomain: firebaseConfig.authDomain,
-  databaseURL: firebaseConfig.databaseURL,
-  projectId: firebaseConfig.projectId,
-  storageBucket: firebaseConfig.storageBucket,
-  messagingSenderId: firebaseConfig.messagingSenderId
-})
 
-export const db = firebase.firestore(settings)
+const config = require('./firebaseConfig.env');
+
+console.log(config.firebaseConfig)
+
+export const settings = {
+  apiKey: config.firebaseConfig.apiKey,
+  authDomain: config.firebaseConfig.authDomain,
+  databaseURL: config.firebaseConfig.databaseURL,
+  projectId: config.firebaseConfig.projectId,
+  storageBucket: config.firebaseConfig.storageBucket,
+  messagingSenderId: config.firebaseConfig.messagingSenderId
+}
+
+firebase.initializeApp(settings)
+
+export const db = firebase.firestore()
 
 /* eslint-disable no-new */
 new Vue({
